@@ -8,12 +8,12 @@ This sample application showcases how to extend a Heroku web application by inte
 
 ## Requirements
 
-* Heroku login
-* Heroku AppLink Pilot enabled
-* Heroku CLI installed
-* Heroku AppLink CLI plugin is installed
-* Salesforce CLI installed
-* Login information for one or more Scratch, Development or Sandbox orgs
+- Heroku login
+- Heroku AppLink enabled
+- Heroku CLI installed
+- Heroku AppLink CLI plugin is installed
+- Salesforce CLI installed
+- Login information for one or more Scratch, Development or Sandbox orgs
 
 ## Local Development and Testing
 
@@ -36,7 +36,7 @@ Navigate to `http://localhost:5006` to observe a list of accounts from the conne
 
 To access multiple Salesforce orgs, repeat the `salesforce:authorizations` command above with different org logins and connection names, then update the `CONNECTION_NAMES` environment variable within the `.env` file with a comma delimiated list of connection names (example shown below). The sample code will automatically query for `Account` in each org and display the results.
 
-```
+```bash
 CONNECTION_NAMES=my-org,my-org-sales-a
 ```
 
@@ -46,7 +46,7 @@ This sample includes a demonstration of using the Salesforce Bulk API using conn
 
 When you visit the `/bulk-demo` endpoint, the application will check for existing bulk-loaded records. If none are found, it will start an asynchronous bulk load process. You will see output in the console similar to this:
 
-```
+```bash
 Starting Bulk API process for 'empty-org'
 Bulk job status: {
   id: '750xx00000GtITrXXX',
@@ -93,17 +93,16 @@ To access multiple Salesforce orgs, repeat the `salesforce:authorizations` comma
 
 ## Technical Information
 
-* Salesforce APIs are always accessed in the context of the authenticated user. This means that only the objects and fields the user has access to can be accessed by the code.
-* This is a Node.js Express application, using EJS to render browser content. Other client libraries and frameworks can be used of course.
-* The application uses the `@heroku/applink` package to handle Salesforce connections, authentication, and API interactions including SOQL queries and Bulk API operations.
-* The sample uses a custom environment variable `CONNECTION_NAMES` to enumerate the org connections to be used by the application. However this could easily be hardcoded in your own library code, or obtained from a configuration service or other preferred means of your choice.
-* The Bulk API demo intentionally showcases real-world duplicate handling scenarios. Some records may fail to insert due to Salesforce duplicate detection rules, which demonstrates proper error handling in bulk operations. Users can either accept this as a learning opportunity about integration resilience or temporarily disable duplicate rules in their Salesforce org for testing purposes. Successfully inserted records will still be visible on the main page, regardless of any duplicate-related failures.
+- Salesforce APIs are always accessed in the context of the authenticated user. This means that only the objects and fields the user has access to can be accessed by the code.
+- This is a Node.js Express application, using EJS to render browser content. Other client libraries and frameworks can be used of course.
+- The application uses the `@heroku/applink` package to handle Salesforce connections, authentication, and API interactions including SOQL queries and Bulk API operations.
+- The sample uses a custom environment variable `CONNECTION_NAMES` to enumerate the org connections to be used by the application. However this could easily be hardcoded in your own library code, or obtained from a configuration service or other preferred means of your choice.
+- The Bulk API demo intentionally showcases real-world duplicate handling scenarios. Some records may fail to insert due to Salesforce duplicate detection rules, which demonstrates proper error handling in bulk operations. Users can either accept this as a learning opportunity about integration resilience or temporarily disable duplicate rules in their Salesforce org for testing purposes. Successfully inserted records will still be visible on the main page, regardless of any duplicate-related failures.
 
 ## Other Samples
 
-| Sample | What it covers? |
-|--------|----------------|
-| [Salesforce API Access - Node.js](https://github.com/heroku-examples/heroku-applink-pattern-api-access-nodejs) | This sample application showcases how to extend a Heroku web application by integrating it with Salesforce APIs, enabling seamless data exchange and automation across multiple connected Salesforce orgs. It also includes a demonstration of the Salesforce Bulk API, which is optimized for handling large data volumes efficiently. |
-| [Extending Apex, Flow and Agentforce - Node.js](https://github.com/heroku-examples/heroku-applink-pattern-org-action-nodejs) | This sample demonstrates importing a Heroku application into an org to enable Apex, Flow, and Agentforce to call out to Heroku. For Apex, both synchronous and asynchronous invocation are demonstrated, along with securely elevating Salesforce permissions for processing that requires additional object or field access. |
-| [Scaling Batch Jobs with Heroku - Node.js](https://github.com/heroku-examples/heroku-applink-pattern-org-job-nodejs) | This sample seamlessly delegates the processing of large amounts of data with significant compute requirements to Heroku Worker processes. |
-| [Using Eventing to drive Automation and Communication](https://github.com/heroku-examples/heroku-applink-pattern-eventing-nodejs) | This sample extends the batch job sample by adding the ability to use eventing to start the work and notify users once it completes using Custom Notifications. These notifications are sent to the user's desktop or mobile device running Salesforce Mobile. Flow is used in this sample to demonstrate how processing can be handed off to low-code tools such as Flow. |
+| Sample                                                                                                                             | What it covers?                                                                                                                                                                                                                                                                                                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Salesforce API Access - Node.js](https://github.com/heroku-reference-apps/heroku-applink-pattern-api-access-nodejs)               | This sample application showcases how to extend a Heroku web application by integrating it with Salesforce APIs, enabling seamless data exchange and automation across multiple connected Salesforce orgs. It also includes a demonstration of the Salesforce Bulk API, which is optimized for handling large data volumes efficiently. |
+| [Extending Apex, Flow and Agentforce - Node.js](https://github.com/heroku-reference-apps/heroku-applink-pattern-org-action-nodejs) | This sample demonstrates importing a Heroku application into an org to enable Apex, Flow, and Agentforce to call out to Heroku. For Apex, both synchronous and asynchronous invocation are demonstrated, along with securely elevating Salesforce permissions for processing that requires additional object or field access.           |
+| [Scaling Batch Jobs with Heroku - Node.js](https://github.com/heroku-reference-apps/heroku-applink-pattern-org-job-nodejs)         | This sample seamlessly delegates the processing of large amounts of data with significant compute requirements to Heroku Worker processes.                                                                                                                                                                                              |

@@ -1,21 +1,22 @@
 {
-  "name": "heroku-integration-pattern-api-access-nodejs",
+  "name": "heroku-applink-pattern-api-access-nodejs",
   "version": "1.0.0",
   "description": "A sample Node.js app demonstrating Salesforce API integration using Heroku Integration Pilot",
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node --test"
+    "test": "jest",
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
   "dependencies": {
-    "@heroku/applink": "^1.0.0",
-    "dotenv": "^16.5.0",
-    "ejs": "^3.1.9",
-    "express": "^4.18.2",
-    "node-fetch": "^2.7.0"
+    "@heroku/applink": "^1.0.2",
+    "dotenv": "^17.2.3",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1"
   },
   "repository": {
     "type": "git",
@@ -30,5 +31,12 @@
     "api",
     "bulk-api"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "globals": "^17.2.0",
+    "jest": "^30.2.0",
+    "prettier": "^3.8.1"
+  }
 }
